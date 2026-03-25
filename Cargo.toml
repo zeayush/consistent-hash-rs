@@ -1,0 +1,15 @@
+[package]
+name = "consistent-hash-rs"
+version = "0.1.0"
+edition = "2021"
+description = "A consistent hash ring implementation in Rust"
+
+[dependencies]
+crc32fast = "1"
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "benchmark"
+harness = false
