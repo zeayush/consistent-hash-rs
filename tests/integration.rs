@@ -296,7 +296,11 @@ fn jump_stability_on_add() {
         .count();
 
     let pct = moved as f64 / keys.len() as f64 * 100.0;
-    assert!(pct < 55.0, "too many keys migrated: {moved}/{} ({pct:.1}%)", keys.len());
+    assert!(
+        pct < 55.0,
+        "too many keys migrated: {moved}/{} ({pct:.1}%)",
+        keys.len()
+    );
 }
 
 // ── HashRouter trait tests ────────────────────────────────────────────────────

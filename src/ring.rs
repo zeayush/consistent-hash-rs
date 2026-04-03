@@ -170,10 +170,7 @@ impl ConsistentHashRing {
             }
         };
 
-        inner
-            .hash_map
-            .get(&inner.sorted_keys[idx])
-            .cloned()
+        inner.hash_map.get(&inner.sorted_keys[idx]).cloned()
     }
 
     /// Return the list of physical nodes currently in the ring.

@@ -1,10 +1,10 @@
-mod ring;
-mod jump;
 mod bounded;
+mod jump;
+mod ring;
 
-pub use ring::ConsistentHashRing;
-pub use jump::JumpHashRing;
 pub use bounded::BoundedLoadRing;
+pub use jump::JumpHashRing;
+pub use ring::ConsistentHashRing;
 
 /// Common interface for all consistent hash implementations.
 ///
@@ -23,28 +23,64 @@ pub trait HashRouter: Send + Sync {
 }
 
 impl HashRouter for ConsistentHashRing {
-    fn add(&self, node: &str, weight: usize) -> bool { self.add(node, weight) }
-    fn remove(&self, node: &str) -> bool { self.remove(node) }
-    fn get(&self, key: &str) -> Option<String> { self.get(key) }
-    fn nodes(&self) -> Vec<String> { self.nodes() }
-    fn len(&self) -> usize { self.len() }
-    fn is_empty(&self) -> bool { self.is_empty() }
+    fn add(&self, node: &str, weight: usize) -> bool {
+        self.add(node, weight)
+    }
+    fn remove(&self, node: &str) -> bool {
+        self.remove(node)
+    }
+    fn get(&self, key: &str) -> Option<String> {
+        self.get(key)
+    }
+    fn nodes(&self) -> Vec<String> {
+        self.nodes()
+    }
+    fn len(&self) -> usize {
+        self.len()
+    }
+    fn is_empty(&self) -> bool {
+        self.is_empty()
+    }
 }
 
 impl HashRouter for JumpHashRing {
-    fn add(&self, node: &str, weight: usize) -> bool { self.add(node, weight) }
-    fn remove(&self, node: &str) -> bool { self.remove(node) }
-    fn get(&self, key: &str) -> Option<String> { self.get(key) }
-    fn nodes(&self) -> Vec<String> { self.nodes() }
-    fn len(&self) -> usize { self.len() }
-    fn is_empty(&self) -> bool { self.is_empty() }
+    fn add(&self, node: &str, weight: usize) -> bool {
+        self.add(node, weight)
+    }
+    fn remove(&self, node: &str) -> bool {
+        self.remove(node)
+    }
+    fn get(&self, key: &str) -> Option<String> {
+        self.get(key)
+    }
+    fn nodes(&self) -> Vec<String> {
+        self.nodes()
+    }
+    fn len(&self) -> usize {
+        self.len()
+    }
+    fn is_empty(&self) -> bool {
+        self.is_empty()
+    }
 }
 
 impl HashRouter for BoundedLoadRing {
-    fn add(&self, node: &str, weight: usize) -> bool { self.add(node, weight) }
-    fn remove(&self, node: &str) -> bool { self.remove(node) }
-    fn get(&self, key: &str) -> Option<String> { self.get(key) }
-    fn nodes(&self) -> Vec<String> { self.nodes() }
-    fn len(&self) -> usize { self.len() }
-    fn is_empty(&self) -> bool { self.is_empty() }
+    fn add(&self, node: &str, weight: usize) -> bool {
+        self.add(node, weight)
+    }
+    fn remove(&self, node: &str) -> bool {
+        self.remove(node)
+    }
+    fn get(&self, key: &str) -> Option<String> {
+        self.get(key)
+    }
+    fn nodes(&self) -> Vec<String> {
+        self.nodes()
+    }
+    fn len(&self) -> usize {
+        self.len()
+    }
+    fn is_empty(&self) -> bool {
+        self.is_empty()
+    }
 }

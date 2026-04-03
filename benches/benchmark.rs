@@ -91,4 +91,3 @@ fn bench_get_n(c: &mut Criterion) {
 
 criterion_group!(benches, bench_add, bench_get, bench_get_n);
 criterion_main!(benches);
-
