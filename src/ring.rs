@@ -178,5 +178,4 @@ impl ConsistentHashRing {
         let inner = self.inner.read().unwrap();
         inner.nodes.keys().cloned().collect()
     }
-
 }
