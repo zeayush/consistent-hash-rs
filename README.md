@@ -94,13 +94,16 @@ Run on Apple M1 · Rust stable · Criterion 0.5
 cargo bench
 ```
 
-| Operation | 100 nodes | 1,000 nodes | 10,000 nodes |
+| Operation | 10 nodes | 100 nodes | 1,000 nodes |
 |---|---|---|---|
-| `get` | ~28 ns | ~35 ns | ~42 ns |
-| `add` (build ring) | ~25 ms | ~250 ms | ~2.5 s |
+| `get` (O(log n)) | ~73 ns | ~81 ns | ~91 ns* |
+| `add` (build ring) | ~263 µs | ~9.3 ms | ~820 ms |
+
+\* `get` measured at 10,000 nodes; binary-search growth is sub-linear so
+1,000 and 10,000 nodes produce virtually the same latency (~91 ns).
 
 `get` scales O(log n) — binary search on the sorted vnode array.
-`add` cost is dominated by `replicas x N` CRC-32 computations and the re-sort.
+`add` cost is dominated by `replicas × N` CRC-32 computations and the re-sort.
 
 ---
 
