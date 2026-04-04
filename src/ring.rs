@@ -179,42 +179,4 @@ impl ConsistentHashRing {
         inner.nodes.keys().cloned().collect()
     }
 
-    /// Return up to `n` distinct physical nodes in ring order starting from the
-    /// position of `key`. Used by `BoundedLoadRing` for candidate walking and
-    /// by callers that need replica placement (e.g., write to k nodes).
-    pub fn get_n(&self, key: &str, n: usize) -> Vec<String> {
-        let inner = self.inner.read().unwrap();
-        if inner.sorted_keys.is_empty() || n == 0 {
-            return Vec::new();
-        }
-
-        let hash = key_hash(key);
-        let start = match inner.sorted_keys.binary_search(&hash) {
-            Ok(i) => i,
-            Err(i) => {
-                if i >= inner.sorted_keys.len() {
-                    0
-                } else {
-                    i
-                }
-            }
-        };
-
-        let total = inner.sorted_keys.len();
-        let mut seen = std::collections::HashSet::new();
-        let mut result = Vec::new();
-
-        for i in 0..total {
-            if result.len() >= n {
-                break;
-            }
-            let idx = (start + i) % total;
-            if let Some(node) = inner.hash_map.get(&inner.sorted_keys[idx]) {
-                if seen.insert(node.clone()) {
-                    result.push(node.clone());
-                }
-            }
-        }
-        result
-    }
 }
