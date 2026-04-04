@@ -127,10 +127,3 @@ key stability on node join, wrap-around, zero replicas panic, concurrent reads
 and writes.
 
 ---
-
-## Portfolio
-
-| # | System | Rust | Go |
-|---|---|---|---|
-| 1 | Consistent Hashing | **this repo** | [consistent-hashing-go](https://github.com/zeayush/consistent-hashing-go) |
-| ... | *more coming* | | |
